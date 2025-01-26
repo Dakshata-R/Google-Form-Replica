@@ -1,0 +1,84 @@
+body{
+    font-family: Arial, sans-serif;
+    background-color:rgb(236, 240, 243);
+    margin: 15px;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.googlef{
+    padding: 1px;
+    padding-left: 15px;
+    background-color: white;
+    border-color: rgb(219, 216, 216);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    border-top: 6px solid rgb(145, 17, 204); 
+    color: rgb(90, 90, 90);
+}
+.email,.name,.dept,.gender,.interest{
+    background-color: white;
+    border-color: rgb(219, 216, 216);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 7px;
+    margin-top: 10px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    color: rgb(90, 90, 90);
+}
+.name input,.email input{
+    border: none;
+    padding: 10px 20px;
+    padding-bottom: 0%;
+    border-bottom: 2px solid  rgb(219, 216, 216);
+    
+}
+.dept select{
+    border-color: rgb(219, 216, 216);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+    padding: 5px 30px;
+}
+.required {
+    color: red;
+    font-weight: bold;
+}
+#reset{
+    margin-left: 70%;
+    border: none;
+    padding: 10px 20px;
+    color: rgb(80, 80, 150);
+    font-size: 15px;
+}
+#reset:hover{
+    cursor: pointer;
+    background-color: rgb(219, 216, 216);
+    border-radius: 5px;
+}
+#submit{
+    background-color: white;
+    border-color: rgb(219, 216, 216);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: rgb(80, 80, 150);
+}
+#submit:hover{
+    cursor: pointer;
+    background-color: rgb(219, 216, 216);
+    border-radius: 5px;
+}
+p{
+    color: rgb(90, 90, 90);
+}
+.end{
+    font-size: 28px;
+    text-align: center;
+}
+input[type="checkbox"],input[type="radio"],select,option
+{
+    cursor: pointer;
+}
