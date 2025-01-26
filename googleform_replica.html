@@ -1,187 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Forms with MySQL</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: rgb(236, 240, 243);
-            margin: 15px;
-            margin-left: 25%;
-            margin-right: 25%;
-        }
-        .googlef {
-            padding: 1px;
-            padding-left: 15px;
-            background-color: white;
-            border-color: rgb(219, 216, 216);
-            border-width: 1px;
-            border-style: solid;
-            border-radius: 10px;
-            border-top: 6px solid rgb(145, 17, 204); 
-            color: rgb(90, 90, 90);
-        }
-        .email, .name, .dept, .gender, .interest {
-            background-color: white;
-            border-color: rgb(219, 216, 216);
-            border-width: 1px;
-            border-style: solid;
-            border-radius: 7px;
-            margin-top: 10px;
-            padding-bottom: 15px;
-            padding-left: 15px;
-            color: rgb(90, 90, 90);
-        }
-        .name input, .email input {
-            border: none;
-            padding: 10px 20px;
-            border-bottom: 2px solid rgb(219, 216, 216);
-        }
-        .dept select {
-            border-color: rgb(219, 216, 216);
-            border-width: 1px;
-            border-style: solid;
-            border-radius: 3px;
-            padding: 5px 30px;
-        }
-        .required {
-            color: red;
-            font-weight: bold;
-        }
-        #reset {
-            margin-left: 70%;
-            border: none;
-            padding: 10px 20px;
-            color: rgb(80, 80, 150);
-            font-size: 15px;
-        }
-        #reset:hover {
-            cursor: pointer;
-            background-color: rgb(219, 216, 216);
-            border-radius: 5px;
-        }
-        #submit {
-            background-color: white;
-            border-color: rgb(219, 216, 216);
-            border-width: 1px;
-            border-style: solid;
-            border-radius: 5px;
-            padding: 10px 20px;
-            color: rgb(80, 80, 150);
-        }
-        #submit:hover {
-            cursor: pointer;
-            background-color: rgb(219, 216, 216);
-            border-radius: 5px;
-        }
-        p {
-            color: rgb(90, 90, 90);
-        }
-        .end {
-            font-size: 28px;
-            text-align: center;
-        }
-        input[type="checkbox"], input[type="radio"], select, option {
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <?php
-    // MySQL connection
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "google_form";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Sanitize and retrieve form data
-        $name = htmlspecialchars($_POST['Name']);
-        $email = htmlspecialchars($_POST['Email']);
-        $department = htmlspecialchars($_POST['Department']);
-        $gender = htmlspecialchars($_POST['Gender']);
-        $interests = isset($_POST['Interest']) ? implode(", ", $_POST['Interest']) : "";
-
-        // Insert data into MySQL
-        $sql = "INSERT INTO form_submissions (name, email, department, gender, interests) 
-                VALUES ('$name', '$email', '$department', '$gender', '$interests')";
-
-        if ($conn->query($sql) === TRUE) {
-            echo "<h1>Form Submitted Successfully</h1>";
-            echo "<p><strong>Name:</strong> $name</p>";
-            echo "<p><strong>Email:</strong> $email</p>";
-            echo "<p><strong>Department:</strong> $department</p>";
-            echo "<p><strong>Gender:</strong> $gender</p>";
-            echo "<p><strong>Interests:</strong> $interests</p>";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-        $conn->close();
-        exit;
-    }
-    ?>
-    <form method="POST">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="gform.css">
+        <title>Forms</title>
+        
+    </head>
+    <body>
+        <form action="https://script.google.com/macros/s/AKfycbzy10AfJA8sfbLVxQUbOBOLatPtAY1pRJaM_wSIp4T63k-lqskNDHaocBRZEHH48iSH/exec" method="post">
         <div class="googlef">
             <p style="font-size: 30px;">Google Form Replica</p>
-            <p>Just a simple replication of google form using HTML, CSS, and PHP.</p>
+            <p>Just a simple replication of google form using HTML, CSS and Javascript.</p>
         </div>
         <div class="name">
             <p>Name <span class="required">*</span></p>
-            <input placeholder="Your Name" type="text" name="Name" required>
+            <input placeholder="Your Name" type="text" name="Name">
         </div>
         <div class="email">
             <p>Email <span class="required">*</span></p>
-            <input placeholder="Mail ID" type="email" name="Email" required>
+            <input placeholder="Mail ID" type="email" name="Email">
         </div>
         <div class="dept">
             <p>Department <span class="required">*</span></p>
-            <select name="Department" required>
-                <option value="CSE">CSE</option>
-                <option value="IT">IT</option>
-                <option value="ECE">ECE</option>
-                <option value="EEE">EEE</option>
-                <option value="AIML">AIML</option>
-                <option value="CT">CT</option>
-                <option value="AIDS">AIDS</option>
-                <option value="FT">FT</option>
+            <select name="Department">
+                <option>CSE</option>
+                <option>IT</option>
+                <option>ECE</option>
+                <option>EEE</option>
+                <option>AIML</option>
+                <option>CT</option>
+                <option>AIDS</option>
+                <option>FT</option>
             </select>
         </div>
         <div class="gender">
             <p>Gender <span class="required">*</span></p>
-            <input type="radio" id="male" name="Gender" value="Male" required>
+            <input type="radio" id="male" name="Gender" value="Male">
             <label for="male">Male</label>
             <br>
-            <input type="radio" id="female" name="Gender" value="Female" required>
+            <input type="radio" id="female" name="Gender" value="Female">
             <label for="female">Female</label>
         </div>
         <div class="interest">
             <p>Interest</p>
-            <input type="checkbox" name="Interest[]" value="UI/UX Design">UI/UX Design<br>
-            <input type="checkbox" name="Interest[]" value="Frontend Development">Frontend Development<br>
-            <input type="checkbox" name="Interest[]" value="Backend Development">Backend Development<br>
-            <input type="checkbox" name="Interest[]" value="AI Development">AI Development<br>
-            <input type="checkbox" name="Interest[]" value="Fullstack">Fullstack<br>
-            <input type="checkbox" name="Interest[]" value="Cybersecurity">Cybersecurity<br>
-            <input type="checkbox" name="Interest[]" value="Data Science">Data Science
+            <input type="checkbox" name="Interest" value="UI/UX Design">UI/UX Design<br>
+            <input type="checkbox" name="Interest" value="Frontend Development">Frontend Development<br>
+            <input type="checkbox" name="Interest" value="Backend Development">Backend Development<br>
+            <input type="checkbox" name="Interest" value="AI Development">AI Development<br>
+            <input type="checkbox" name="Interest" value="Fullstack">Fullstack<br>
+            <input type="checkbox" name="Interest" value="Cybersecurity">Cybersecurity<br>
+            <input type="checkbox" name="Interest" value="Data Science">Data Science
         </div>
         <br>
-        <input id="submit" type="submit" value="Submit">
+        <input id="submit" type="submit">
         <input id="reset" type="reset" value="Clear form">
+
 
         <p>Never submit passwords through Google Forms.</p>
         <p style="text-align: center; font-size: 15px;">This form was created inside of Bannari Amman Institute of Technology.
             <br>Does this form look suspicious? Report</p>
         <p class="end">Google Forms</p>
     </form>
-</body>
+    
+    </body>
+    
 </html>
